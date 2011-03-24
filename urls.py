@@ -5,6 +5,7 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^$', 'polls.views.redirect_to_polls'),
     (r'^polls/$', 'polls.views.index'),
     (r'^polls/(\d+)/$', 'polls.views.detail'),
     (r'^polls/(\d+)/results/$', 'polls.views.results'),
