@@ -5,6 +5,10 @@ from django.conf.urls.defaults import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^polls/$', 'polls.views.index'),
+    (r'^polls/(\d+)/$', 'polls.views.detail'),
+    (r'^polls/(\d+)/results/$', 'polls.views.results'),
+    (r'^polls/(\d+)/vote/$', 'polls.views.vote'),
     # Examples:
     # url(r'^$', 'myproject.views.home', name='home'),
     # url(r'^myproject/', include('myproject.foo.urls')),
