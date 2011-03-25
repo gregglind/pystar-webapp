@@ -1,6 +1,7 @@
 # Create your views here.
 
-
+from django.template import RequestContext
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -17,11 +18,8 @@ def index(request):
     return render_to_response('polls/index.html', context)
 
 def detail(request, poll_id):
-    try:
-        p = Poll.objects.get(id=poll_id)
-    except Poll.DoesNotExist:
-        raise Http404
-    return render_to_response('polls/detail.html', {'poll': p})
+    p = get_object_or_404(Poll, pk=poll_id)
+    return render_to_response('polls/detail.html', {'poll': p}, context_instance=RequestContext(request))
 
 def results(request, poll_id):
     return HttpResponse("You're looking at the results of poll <strong>%s</strong>." % (poll_id,))
